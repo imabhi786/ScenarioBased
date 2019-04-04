@@ -297,41 +297,78 @@ void drawsea()
 {
 	glColor3f(0.0,0.6,1.0);
 	glBegin(GL_POLYGON);
-	glVertex2f(2200,900);
-	glVertex2f(2200,900);
-	glColor3f(0.0,0.7,1.0);
+	glVertex2f(2200,700);
 	glVertex2f(2200,800);
+	glColor3f(0.0,0.7,1.0);
+	glVertex2f(2200,700);
 	glVertex2f(2200,750);
 	glVertex2f(1900,700);
 	glColor3f(0.0,0.7,1.0);
 	glVertex2f(1850,600);
 	glVertex2f(1800,600);
 	glColor3f(.0,0.8,.9);
-	glVertex2f(1700,550);
-	glVertex2f(1600,550);
+	glVertex2f(1700,600);
+	glVertex2f(1600,500);
 	glColor3f(0.0,0.6,.98);
-	glVertex2f(1450,400);
+	glVertex2f(1450,600);
 	glColor3f(.0,0.8,.95);
-	glVertex2f(1300,300);
+	glVertex2f(1300,500);
 	glColor3f(.0,0.7,.98);
-	glVertex2f(1100,250);
+	glVertex2f(1100,650);
 	glColor3f(.0,0.8,.9);
-	glVertex2f(900,200);
+	glVertex2f(900,500);
 	glColor3f(.0,0.8,.9);
-	glVertex2f(700,200);
+	glVertex2f(700,600);
 
 	glColor3f(.0,0.7,.9);
-	glVertex2f(500,300);
-	glVertex2f(400,400);
+	glVertex2f(500,700);
+	glVertex2f(400,700);
 	glColor3f(0.0,0.6,.9);
 	glVertex2f(300,500);
-	glVertex2f(150,600);
+	glVertex2f(150,700);
 	glColor3f(.0,0.7,.9);
 	glVertex2f(0,700);
 	glVertex2f(0,1300);
 	glColor3f(.0,0.8,.9);
-	glVertex2f(2200,1300);
+	glVertex2f(2200,700);
 	glEnd();
+
+	for(int k=0;k<800;k+=150){
+		glColor3f(0.5,0.3,0.5);
+
+	        glBegin(GL_POLYGON);
+			glVertex2i(350+k,310);
+			glVertex2i(350+k,350);
+			glVertex2i(360+k,350);
+			glVertex2i(360+k,310);
+			glEnd();
+			glColor3f(0.0,1.0,0.0);
+			glBegin(GL_TRIANGLES);
+			glVertex2i(340+k,350);
+			glVertex2i(355+k,410);
+			glVertex2i(370+k,350);
+			glEnd();
+		glColor3f(1.0,1.2,0.0);
+				        glBegin(GL_POLYGON);
+						glVertex2i(400+k,300);
+						glVertex2i(400+k,360);
+						glVertex2i(480+k,360);
+						glVertex2i(480+k,300);
+						glEnd();
+						 glBegin(GL_POLYGON);
+						 glColor3f(0.0,0.0,0.0);
+						glVertex2i(430+k,300);
+						glVertex2i(430+k,350);
+						glVertex2i(460+k,350);
+						glVertex2i(460+k,300);
+						glEnd();
+						glColor3f(0.0,1.0,1.0);
+						glBegin(GL_TRIANGLES);
+						glVertex2i(390+k,360);
+						glVertex2i(440+k,410);
+						glVertex2i(490+k,360);
+						glEnd();
+	}
 
 }
 
@@ -662,50 +699,50 @@ void drawtree()
 	glVertex2f(350,300);
 	glEnd();
 
-	glColor3f(0.0,0.2,0.0);
-	glBegin(GL_POLYGON);
-	glVertex2f(400,250);
-	glVertex2f(450,350);
-//	glVertex2f(400,350);
-//	glVertex2f(450,450);
-	glColor3f(0.1,0.4,0.);
-	glVertex2f(400,450);
-	glVertex2f(500,650);
-		glColor3f(0.30,0.4,0.);
-	glVertex2f(650,450);
-	glVertex2f(600,450);
-	glColor3f(0.0,0.3,0.2);
-	glVertex2f(700,350);
-	glVertex2f(650,350);
-		glColor3f(0.30,0.4,0.);
-	glVertex2f(700,250);
-	glEnd();
+// 	glColor3f(0.0,0.2,0.0);
+// 	glBegin(GL_POLYGON);
+// 	glVertex2f(400,250);
+// 	glVertex2f(450,350);
+// //	glVertex2f(400,350);
+// //	glVertex2f(450,450);
+// 	glColor3f(0.1,0.4,0.);
+// 	glVertex2f(400,450);
+// 	glVertex2f(500,650);
+// 		glColor3f(0.30,0.4,0.);
+// 	glVertex2f(650,450);
+// 	glVertex2f(600,450);
+// 	glColor3f(0.0,0.3,0.2);
+// 	glVertex2f(700,350);
+// 	glVertex2f(650,350);
+// 		glColor3f(0.30,0.4,0.);
+// 	glVertex2f(700,250);
+// 	glEnd();
 
-	glColor3f(0.0,0.3,0.0);
-	glBegin(GL_POLYGON);
-	glVertex2f(750,200);
-	glVertex2f(850,300);
-	glColor3f(0.30,0.4,0.);
+	// glColor3f(0.0,0.3,0.0);
+	// glBegin(GL_POLYGON);
+	// glVertex2f(750,200);
+	// glVertex2f(850,300);
+	// glColor3f(0.30,0.4,0.);
 
-	glVertex2f(800,300);
+	// glVertex2f(800,300);
 
-	glVertex2f(850,400);
-	glVertex2f(800,400);
-	glColor3f(0.0,0.2,0.1);
-	glVertex2f(850,500);
-		glColor3f(0.0,0.2,0.0);
-	glVertex2f(800,500);
-	glVertex2f(900,600);
-	glColor3f(0.1,0.4,0.);
-	glVertex2f(1000,500);
-	glVertex2f(950,500);
-	glVertex2f(1100,400);
-		glColor3f(0.2,0.4,0.0);
-	glVertex2f(1050,400);
-	glVertex2f(1150,300);
-	glColor3f(0.2,0.5,0.0);
-	glVertex2f(1100,300);
-	glVertex2f(1150,200);
+	// glVertex2f(850,400);
+	// glVertex2f(800,400);
+	// glColor3f(0.0,0.2,0.1);
+	// glVertex2f(850,500);
+	// 	glColor3f(0.0,0.2,0.0);
+	// glVertex2f(800,500);
+	// glVertex2f(900,600);
+	// glColor3f(0.1,0.4,0.);
+	// glVertex2f(1000,500);
+	// glVertex2f(950,500);
+	// glVertex2f(1100,400);
+	// 	glColor3f(0.2,0.4,0.0);
+	// glVertex2f(1050,400);
+	// glVertex2f(1150,300);
+	// glColor3f(0.2,0.5,0.0);
+	// glVertex2f(1100,300);
+	// glVertex2f(1150,200);
 	glEnd();
 
 
@@ -722,23 +759,23 @@ void drawtree()
 	glEnd();
 
 
-	glColor3f(0.2,0.0,0.0);
-	glBegin(GL_POLYGON);
-	glVertex2f(500,0);
-	glVertex2f(500,250);
-	glColor3f(0.57,0.0,0.0);
-	glVertex2f(550,250);
-	glVertex2f(550,0);
-	glEnd();
+	// glColor3f(0.2,0.0,0.0);
+	// glBegin(GL_POLYGON);
+	// glVertex2f(500,0);
+	// glVertex2f(500,250);
+	// glColor3f(0.57,0.0,0.0);
+	// glVertex2f(550,250);
+	// glVertex2f(550,0);
+	// glEnd();
 
-	glColor3f(0.2,0.0,0.0);
-	glBegin(GL_POLYGON);
-	glVertex2f(950,0);
-	glVertex2f(950,200);
-	glColor3f(0.57,0.0,0.0);
-	glVertex2f(1000,200);
-	glVertex2f(1000,0);
-	glEnd();
+	// glColor3f(0.2,0.0,0.0);
+	// glBegin(GL_POLYGON);
+	// glVertex2f(950,0);
+	// glVertex2f(950,200);
+	// glColor3f(0.57,0.0,0.0);
+	// glVertex2f(1000,200);
+	// glVertex2f(1000,0);
+	// glEnd();
 }
 
 //To draw tree for NIGHT
@@ -905,59 +942,72 @@ void day()
 	displaytext();
 
 //to draw street light for DAY
-		glColor3f(0.10,0.10,0.0);
+	// 	glColor3f(0.10,0.10,0.0);
+	// glBegin(GL_POLYGON);
+	// glVertex2f(1400,0);
+	// 	glColor3f(0.10,0.10,0.0);
+	// glVertex2f(1425,0);
+	// 	glColor3f(0.10,0.10,0.0);
+	// glVertex2f(1425,250);
+	// glVertex2f(1400,250);
+	// glEnd();
+	// glColor3f(1.0,01.0,01.0);
+	// circle_draw(1410,280,30);
+	// circle_draw(1410,280,10);
+
+	// 		glColor3f(0.10,0.10,0.0);
+	// glBegin(GL_POLYGON);
+	// glVertex2f(1600,400);
+	// 	glColor3f(0.10,0.10,0.0);
+	// glVertex2f(1625,400);
+	// 	glColor3f(0.10,0.10,0.0);
+	// glVertex2f(1625,450);
+	// glVertex2f(1600,450);
+	// glEnd();
+	// glColor3f(1.0,01.0,01.0);
+	// circle_draw(1610,380,30);
+	// circle_draw(1610,380,10);
+drawsmallboat();
+	drawboat();
+			glColor3f(0.10,0.10,0.0);
 	glBegin(GL_POLYGON);
-	glVertex2f(1400,0);
+	glVertex2f(1600,460);
 		glColor3f(0.10,0.10,0.0);
-	glVertex2f(1425,0);
+	glVertex2f(1625,460);
 		glColor3f(0.10,0.10,0.0);
-	glVertex2f(1425,250);
-	glVertex2f(1400,250);
+	glVertex2f(1625,670);
+	glVertex2f(1600,670);
 	glEnd();
 	glColor3f(1.0,01.0,01.0);
-	circle_draw(1410,280,30);
-	circle_draw(1410,280,10);
+	circle_draw(1610,655,30);
+	circle_draw(1610,655,10);
 
 			glColor3f(0.10,0.10,0.0);
 	glBegin(GL_POLYGON);
-	glVertex2f(1600,200);
+	glVertex2f(1800,550);
 		glColor3f(0.10,0.10,0.0);
-	glVertex2f(1625,200);
+	glVertex2f(1825,550);
 		glColor3f(0.10,0.10,0.0);
-	glVertex2f(1625,350);
-	glVertex2f(1600,350);
+	glVertex2f(1825,750);
+	glVertex2f(1800,750);
 	glEnd();
 	glColor3f(1.0,01.0,01.0);
-	circle_draw(1610,380,30);
-	circle_draw(1610,380,10);
+	circle_draw(1810,755,30);
+	circle_draw(1810,755,10);
 
 			glColor3f(0.10,0.10,0.0);
 	glBegin(GL_POLYGON);
-	glVertex2f(1800,380);
-		glColor3f(0.10,0.10,0.0);
-	glVertex2f(1825,380);
-		glColor3f(0.10,0.10,0.0);
-	glVertex2f(1825,525);
-	glVertex2f(1800,525);
-	glEnd();
-	glColor3f(1.0,01.0,01.0);
-	circle_draw(1810,555,30);
-	circle_draw(1810,555,10);
-
-			glColor3f(0.10,0.10,0.0);
-	glBegin(GL_POLYGON);
-	glVertex2f(2000,500);
-		glColor3f(0.10,0.10,0.0);
-	glVertex2f(2025,500);
+	glVertex2f(2000,650);
 		glColor3f(0.10,0.10,0.0);
 	glVertex2f(2025,650);
-	glVertex2f(2000,650);
+		glColor3f(0.10,0.10,0.0);
+	glVertex2f(2025,850);
+	glVertex2f(2000,850);
 	glEnd();
 	glColor3f(1.0,01.0,01.0);
-	circle_draw(2010,680,30);
-	circle_draw(2010,680,10);
-	drawsmallboat();
-	drawboat();
+	circle_draw(2010,880,30);
+	circle_draw(2010,880,10);
+	
 		//to draw road DAY
 
 	glPointSize(8.0);
@@ -967,16 +1017,16 @@ void day()
 		glColor3f(0.05,0.05,0.0);
 	glVertex2f(2200,400);
 		glColor3f(0.10,0.10,0.0);
-	glVertex2f(1700,0);
+	glVertex2f(1200,0);
 	glColor3f(0.05,0.07,0.0);
-	glVertex2f(1400,0);
+	glVertex2f(600,0);
 	glEnd();
 		glColor3f(1.0,1.0,1.0);
 	glBegin(GL_LINES);
 	glVertex2f(2200,550);
-	glVertex2f(1600,0);
+	glVertex2f(850,0);
 	glVertex2f(2200,560);
-	glVertex2f(1590,0);
+	glVertex2f(830,0);
 	glEnd();
 
 }
