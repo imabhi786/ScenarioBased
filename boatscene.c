@@ -2,8 +2,8 @@
 /*
  * sea.c
  *
- *  Created on: Mar 28, 2014
- *      Author: kamath
+ *  Created on: April 04, 2019
+ *  Authors: Abhijeet Mathur and  Avinash Jaiswal
  */
 #include<stdio.h>
 #include<stdlib.h>
@@ -14,6 +14,12 @@ int boat=0;
 int n;
 int bi;
 int s;
+int flag=0;
+int r=0.1,g=0.0,b=0.1;
+int submenu;
+int xangle=0;
+static int window, returnmenu, returnsubmenu, returnsubmenucolor1, returnsubmenucolor2, returnsubmenucolor3, returnsubmenucolor4, value = 0;
+char name3[]="Computer Graphics project : Scenario based Nature";
 
 void day();
 void night();
@@ -37,7 +43,57 @@ void mainmenu(int id);
 void init();
 int main(int argc,char** argv);
 
+void init1()
+{
+    glClearColor(0,0,0,0);
+	glPointSize(5.0);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(0.0,900.0,0.0,600.0,50.0,-50.0);
+	glutPostRedisplay(); 		// request redisplay
+}
 
+void display_string(int x, int y, char *string, int font)
+{
+    int len,i;
+	glColor3f(1.0,0.52,1.0);
+	glRasterPos2f(x, y);
+    len = (int) strlen(string);
+    for (i = 0; i < len; i++) {
+    if(font==1)
+	    glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24,string[i]);
+	if(font==2)
+        glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,string[i]);
+	if(font==3)
+	    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12,string[i]);
+	if(font==4)
+        glutBitmapCharacter(GLUT_BITMAP_HELVETICA_10,string[i]);
+	}
+
+}
+
+void display1(void)
+{
+
+	glClearColor(1.0,1.0,0.1,1.0);
+	display_string(290,540,"Sardar Vallabhbhai National Institute of Technology",1);
+	display_string(290,500,name3,1);
+	display_string(450,440,"HELP",2);
+	display_string(440,400,"MOUSE",2);
+	display_string(390,380,"PRESS RIGHT BUTTON FOR MENU",3);
+	display_string(430,340,"KEYBOARD",2);
+	display_string(360,320,"PRESS X TO MOVE BOAT IN +X DIRECTION",3);
+	display_string(360,310,"PRESS Y TO MOVE BOAT IN -X DIRECTION",3);
+	display_string(360,300,"PRESS Z TO MOVE MOON IN +Y DIRECTION",3);
+	display_string(360,290,"PRESS W TO MOVE MOON IN -Y DIRECTION",3);
+	display_string(390,280,"PRESS S TO STOP THE BOAT",3);
+	display_string(385,270,"PRESS R TO RESTART THE BOAT",3);
+	display_string(420,230,"ESCAPE TO EXIT",3);
+	display_string(380,150,"PRESS SPACE BAR TO ENTER",2);
+	glutPostRedisplay();
+	glutSwapBuffers();
+
+}
 void displaytext()
 {
 	//to diplay text
@@ -65,7 +121,8 @@ void displaytext()
 	glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12,'D');
 }
 void init()
-{	glClearColor(.8,.5,0.0,1.0);
+{	
+	glClearColor(.8,.5,0.0,1.0);
 
 	glColor3f(1.0,0.0,0.0);
 	glPointSize(5.0);
@@ -80,7 +137,7 @@ void init()
 	printf("press 's' to stop the smallboat\n");
 	printf("press 'r' to restart the smallboat\n");
 
-	glutPostRedisplay();
+	// glutPostRedisplay();
 }
 
 //To draw Mountain for DAY
@@ -293,83 +350,87 @@ void circle_draw(GLint h,GLint k,GLint r)
 
 //To draw Sea for DAY
 
+
 void drawsea()
 {
 	glColor3f(0.0,0.6,1.0);
 	glBegin(GL_POLYGON);
 	glVertex2f(2200,700);
 	glVertex2f(2200,800);
-	glColor3f(0.0,0.7,1.0);
+	// glColor3f(0.0,0.7,1.0);
 	glVertex2f(2200,700);
 	glVertex2f(2200,750);
 	glVertex2f(1900,700);
-	glColor3f(0.0,0.7,1.0);
+	// glColor3f(0.0,0.7,1.0);
 	glVertex2f(1850,600);
 	glVertex2f(1800,600);
 	glColor3f(.0,0.8,.9);
 	glVertex2f(1700,600);
 	glVertex2f(1600,500);
-	glColor3f(0.0,0.6,.98);
+	// glColor3f(0.0,0.7,1.0);
 	glVertex2f(1450,600);
 	glColor3f(.0,0.8,.95);
 	glVertex2f(1300,500);
-	glColor3f(.0,0.7,.98);
+	// glColor3f(0.0,0.7,1.0);
 	glVertex2f(1100,650);
 	glColor3f(.0,0.8,.9);
 	glVertex2f(900,500);
-	glColor3f(.0,0.8,.9);
+	// glColor3f(0.0,0.7,1.0);
 	glVertex2f(700,600);
 
-	glColor3f(.0,0.7,.9);
+	glColor3f(0.0,0.7,1.0);
 	glVertex2f(500,700);
 	glVertex2f(400,700);
-	glColor3f(0.0,0.6,.9);
+	// glColor3f(0.0,0.5,1.0);
 	glVertex2f(300,500);
 	glVertex2f(150,700);
-	glColor3f(.0,0.7,.9);
+	// glColor3f(0.0,0.7,1.0);
 	glVertex2f(0,700);
 	glVertex2f(0,1300);
-	glColor3f(.0,0.8,.9);
+	// glColor3f(0.0,0.5,1.0);
 	glVertex2f(2200,700);
 	glEnd();
+	int height_inc = 0,house_inc = 20;
 
-	for(int k=0;k<800;k+=150){
+	for(int k=0;k<=1000;k+=200)
+	{
 		glColor3f(0.5,0.3,0.5);
 
-	        glBegin(GL_POLYGON);
-			glVertex2i(350+k,310);
-			glVertex2i(350+k,350);
-			glVertex2i(360+k,350);
-			glVertex2i(360+k,310);
-			glEnd();
-			glColor3f(0.0,1.0,0.0);
-			glBegin(GL_TRIANGLES);
-			glVertex2i(340+k,350);
-			glVertex2i(355+k,410);
-			glVertex2i(370+k,350);
-			glEnd();
+		glBegin(GL_POLYGON);
+		glVertex2i(350+k,10 + height_inc);
+		glVertex2i(350+k,50 + height_inc);
+		glVertex2i(360+k,50 + height_inc);
+		glVertex2i(360+k,10 + height_inc);
+		glEnd();
+		
+		glColor3f(0.0,1.0,0.0);
+		glBegin(GL_TRIANGLES);
+		glVertex2i(340+k,50 + height_inc);
+		glVertex2i(355+k,110 + height_inc);
+		glVertex2i(370+k,50 + height_inc);
+		glEnd();
 		glColor3f(1.0,1.2,0.0);
-				        glBegin(GL_POLYGON);
-						glVertex2i(400+k,300);
-						glVertex2i(400+k,360);
-						glVertex2i(480+k,360);
-						glVertex2i(480+k,300);
-						glEnd();
-						 glBegin(GL_POLYGON);
-						 glColor3f(0.0,0.0,0.0);
-						glVertex2i(430+k,300);
-						glVertex2i(430+k,350);
-						glVertex2i(460+k,350);
-						glVertex2i(460+k,300);
-						glEnd();
-						glColor3f(0.0,1.0,1.0);
-						glBegin(GL_TRIANGLES);
-						glVertex2i(390+k,360);
-						glVertex2i(440+k,410);
-						glVertex2i(490+k,360);
-						glEnd();
+		glBegin(GL_POLYGON);
+		glVertex2i(400+k,10 + height_inc);
+		glVertex2i(400+k,70 + height_inc);
+		glVertex2i(480+k,70 + height_inc + house_inc);
+		glVertex2i(480+k,10 + height_inc + house_inc);
+		glEnd();
+		glBegin(GL_POLYGON);
+		glColor3f(0.0,0.0,0.0);
+		glVertex2i(420+k,10 + height_inc);
+		glVertex2i(420+k,50 + height_inc);
+		glVertex2i(460+k,50 + height_inc + 10);
+		glVertex2i(460+k,10 + height_inc +10);
+		glEnd();
+		glColor3f(1.0,0.0,0.0);
+		glBegin(GL_TRIANGLES);
+		glVertex2i(390+k,70 + height_inc );
+		glVertex2i(440+k,130 + height_inc);
+		glVertex2i(490+k,70 + height_inc+15);
+		glEnd();
+		height_inc += 90;
 	}
-
 }
 
 //To draw sea for NIGHT
@@ -541,7 +602,7 @@ void night()
 void drawboat()
 {
 
-	glColor3f(0.1,0.0,0.1);
+	glColor3f(r,g,b);
 	glBegin(GL_POLYGON);
 
 	glVertex2f(700+n,950);
@@ -552,7 +613,7 @@ void drawboat()
 	glVertex2f(1400+n,950);
 	glEnd();
 
-     glColor3f(.6,0.5,0.0);
+    glColor3f(.6,0.5,0.0);
 	glBegin(GL_TRIANGLES);
 	glVertex2f(1200+n,950);
 
@@ -573,7 +634,10 @@ void drawboat()
 	glVertex2f(1000+n,950);
 	glVertex2f(1000+n,1000);
 	glVertex2f(850+n,1000);
+	// glRotatef(xangle,0,0,0);
 	glEnd();
+
+
 }
 void redrawboat1()
 {	if(boat==0)
@@ -644,12 +708,30 @@ void redrawboat()
 
 void key(unsigned char key,int x,int y)
 {
+	if(key==27)
+	{
+		printf("escape pressed. exit.\n");
+	    glutDestroyWindow(window);	/* Kill our window */
+	    exit(0);
+	} 
+	else
+	if(key==' ')
+	{
+		flag=1;
+		display();
+	}
+	else{
 	if(key=='x')
 	{
 
    	  n=n+10;
    	  if(n>2000) n=-800;
      glutPostRedisplay();
+	}
+	if(key=='h')
+	{
+		xangle=90;
+		glutPostRedisplay();
 	}
 	if(key=='y')
 	{
@@ -673,6 +755,7 @@ void key(unsigned char key,int x,int y)
 	{	boat=0;
 		glutPostRedisplay();
 	}
+	}
 
 }
 
@@ -683,7 +766,7 @@ void drawtree()
 {
 	glColor3f(0.0,0.0,1.0);
 	glBegin(GL_POLYGON);
-	glVertex2f(0,300);
+	glVertex2f(0, 300);
 	glVertex2f(100,400);
 	glVertex2f(40,400);
 		glColor3f(0.30,0.4,0.);
@@ -699,50 +782,23 @@ void drawtree()
 	glVertex2f(350,300);
 	glEnd();
 
-// 	glColor3f(0.0,0.2,0.0);
-// 	glBegin(GL_POLYGON);
-// 	glVertex2f(400,250);
-// 	glVertex2f(450,350);
-// //	glVertex2f(400,350);
-// //	glVertex2f(450,450);
-// 	glColor3f(0.1,0.4,0.);
-// 	glVertex2f(400,450);
-// 	glVertex2f(500,650);
-// 		glColor3f(0.30,0.4,0.);
-// 	glVertex2f(650,450);
-// 	glVertex2f(600,450);
-// 	glColor3f(0.0,0.3,0.2);
-// 	glVertex2f(700,350);
-// 	glVertex2f(650,350);
-// 		glColor3f(0.30,0.4,0.);
-// 	glVertex2f(700,250);
-// 	glEnd();
-
-	// glColor3f(0.0,0.3,0.0);
-	// glBegin(GL_POLYGON);
-	// glVertex2f(750,200);
-	// glVertex2f(850,300);
-	// glColor3f(0.30,0.4,0.);
-
-	// glVertex2f(800,300);
-
-	// glVertex2f(850,400);
-	// glVertex2f(800,400);
-	// glColor3f(0.0,0.2,0.1);
-	// glVertex2f(850,500);
-	// 	glColor3f(0.0,0.2,0.0);
-	// glVertex2f(800,500);
-	// glVertex2f(900,600);
-	// glColor3f(0.1,0.4,0.);
-	// glVertex2f(1000,500);
-	// glVertex2f(950,500);
-	// glVertex2f(1100,400);
-	// 	glColor3f(0.2,0.4,0.0);
-	// glVertex2f(1050,400);
-	// glVertex2f(1150,300);
-	// glColor3f(0.2,0.5,0.0);
-	// glVertex2f(1100,300);
-	// glVertex2f(1150,200);
+	glColor3f(0.0,0.2,0.0);
+	glBegin(GL_POLYGON);
+	glVertex2f(400,250+200);
+	glVertex2f(450,350+200);
+//	glVertex2f(400,350);
+//	glVertex2f(450,450);
+	glColor3f(0.1,0.4,0.);
+	glVertex2f(400,450+200);
+	glVertex2f(500,580+200);
+	glColor3f(0.30,0.4,0.);
+	glVertex2f(650,450+200);
+	glVertex2f(600,450+200);
+	glColor3f(0.0,0.3,0.2);
+	glVertex2f(700,350+200);
+	glVertex2f(650,350+200);
+	glColor3f(0.30,0.4,0.);
+	glVertex2f(700,280+200);
 	glEnd();
 
 
@@ -750,7 +806,6 @@ void drawtree()
 	glColor3f(.2,0.0,0.0);
 	glBegin(GL_POLYGON);
 	glVertex2f(150,0);
-//		glColor3f(0.47,0.0,0.0);
 	glVertex2f(150,300);
 	glColor3f(0.57,0.0,0.0);
 	glVertex2f(200,300);
@@ -759,23 +814,14 @@ void drawtree()
 	glEnd();
 
 
-	// glColor3f(0.2,0.0,0.0);
-	// glBegin(GL_POLYGON);
-	// glVertex2f(500,0);
-	// glVertex2f(500,250);
-	// glColor3f(0.57,0.0,0.0);
-	// glVertex2f(550,250);
-	// glVertex2f(550,0);
-	// glEnd();
-
-	// glColor3f(0.2,0.0,0.0);
-	// glBegin(GL_POLYGON);
-	// glVertex2f(950,0);
-	// glVertex2f(950,200);
-	// glColor3f(0.57,0.0,0.0);
-	// glVertex2f(1000,200);
-	// glVertex2f(1000,0);
-	// glEnd();
+	glColor3f(0.2,0.0,0.0);
+	glBegin(GL_POLYGON);
+	glVertex2f(500,200);
+	glVertex2f(500,460);
+	glColor3f(0.57,0.0,0.0);
+	glVertex2f(550,470);
+	glVertex2f(550,220);
+	glEnd();
 }
 
 //To draw tree for NIGHT
@@ -881,261 +927,37 @@ glColor3f(0.1,0.1,.0);
 	glVertex2f(1000,0);
 	glEnd();
 }
-void car(){
-	GLint window;
-GLint window2;
-GLint Xsize=1000;
-GLint Ysize=800;
-float i,theta;
-GLint nml=0,day=1;
-
-
-GLfloat xt=0.0,yt=0.0,zt=0.0,xw=0.0;   /* x,y,z translation */
-GLfloat tx=295,ty=62;
-GLfloat xs=1.0,ys=1.0,zs=1.0;
-
-GLfloat xangle=0.0,yangle=0.0,zangle=0.0,angle=0.0;   /* axis angles */
-
-GLfloat r=0,g=0,b=1;
-GLint light=1;
-int count=1,flg=1;
-int view=0;
-int flag1=0,aflag=1;            //to switch car driving mode
-int flag2=0,wheelflag=0;   //to switch fog effect
-GLUquadricObj *t;
-	glBegin(GL_QUADS);                /* OBJECT MODULE*/
-
-  /* top of cube*/
-  //************************FRONT BODY****************************************
-  glColor3f(r,g,b);
-  glVertex3f( 0.2, 0.4,0.6);
-  glVertex3f(0.6, 0.5,0.6);
-  glVertex3f(0.6, 0.5,0.2);
-  glVertex3f( 0.2,0.4,0.2);
-
-  /* bottom of cube*/
-  glVertex3f( 0.2,0.2,0.6);
-  glVertex3f(0.6,0.2,0.6);
-  glVertex3f(0.6,0.2,0.2);
-  glVertex3f( 0.2,0.2,0.2);
-
-  /* front of cube*/
-  glVertex3f( 0.2,0.2,0.6);
-  glVertex3f(0.2, 0.4,0.6);
-  glVertex3f(0.2,0.4,0.2);
-  glVertex3f( 0.2,0.2,0.2);
-
-  /* back of cube.*/
-  glVertex3f(0.6,0.2,0.6);
-  glVertex3f(0.6,0.5,0.6);
-  glVertex3f(0.6,0.5,0.2);
-  glVertex3f( 0.6,0.2,0.2);
-
-  /* left of cube*/
-  glVertex3f(0.2,0.2,0.6);
-  glVertex3f(0.6,0.2,0.6);
-  glVertex3f(0.6,0.5,0.6);
-  glVertex3f(0.2,0.4,0.6);
-
-  /* Right of cube */
-  glVertex3f(0.2,0.2,0.2);
-  glVertex3f( 0.6,0.2,0.2);
-  glVertex3f( 0.6,0.5,0.2);
-  glVertex3f( 0.2,0.4,0.2);
-//****************************************************************************
-  glVertex3f(0.7,0.65,0.6);
-  glVertex3f(0.7,0.65,0.2);
-  glVertex3f(1.7,0.65,0.2);        //top cover
-  glVertex3f(1.7,0.65,0.6);
-//***************************back guard******************************
-  glColor3f(r,g,b);            /* Set The Color To Blue*/
-  glVertex3f( 1.8, 0.5,0.6);
-  glVertex3f(1.8, 0.5,0.2);
-  glVertex3f(2.1, 0.4, 0.2);
-  glVertex3f(2.1,0.4,0.6);
-
-  /* bottom of cube*/
-  glVertex3f( 2.1,0.2,0.6);
-  glVertex3f(2.1,0.2,0.2);
-  glVertex3f(1.8,0.2,0.6);
-  glVertex3f( 1.8,0.2,0.6);
-
-  /* back of cube.*/
-  glVertex3f(2.1,0.4,0.6);
-  glVertex3f(2.1,0.4,0.2);
-  glVertex3f(2.1,0.2,0.2);
-  glVertex3f(2.1,0.2,0.6);
-
-  /* left of cube*/
-  glVertex3f(1.8,0.2,0.2);
-  glVertex3f(1.8,0.5,0.2);
-  glVertex3f(2.1,0.4,0.2);
-  glVertex3f(2.1,0.2,0.2);
-
-  /* Right of cube */
-  glVertex3f(1.8,0.2,0.6);
-  glVertex3f(1.8,0.5,0.6);
-  glVertex3f(2.1,0.4,0.6);
-  glVertex3f(2.1,0.2,0.6);
-//******************MIDDLE BODY************************************
-  glVertex3f( 0.6, 0.5,0.6);
-  glVertex3f(0.6, 0.2,0.6);
-  glVertex3f(1.8, 0.2, 0.6);
-  glVertex3f(1.8,0.5,0.6);
-
-  /* bottom of cube*/
-  glVertex3f( 0.6,0.2,0.6);
-  glVertex3f(0.6,0.2,0.2);
-  glVertex3f(1.8,0.2,0.2);
-  glVertex3f( 1.8,0.2,0.6);
-
-  /* back of cube.*/
-  glVertex3f(0.6,0.5,0.2);
-  glVertex3f(0.6,0.2,0.2);
-  glVertex3f(1.8,0.2,0.2);
-  glVertex3f(1.8,0.5,0.2);
-//*********************ENTER WINDOW**********************************
-  glColor3f(0.3,0.3,0.3);
-  glVertex3f( 0.77, 0.63,0.2);
-  glVertex3f(0.75, 0.5,0.2);        //quad front window
-  glVertex3f(1.2, 0.5, 0.2);
-  glVertex3f( 1.22,0.63,0.2);
-
-  glVertex3f(1.27,0.63,.2);
-  glVertex3f(1.25,0.5,0.2);        //quad back window
-  glVertex3f(1.65,0.5,0.2);
-  glVertex3f(1.67,0.63,0.2);
-
-  glColor3f(r,g,b);
-  glVertex3f(0.7,0.65,0.2);
-  glVertex3f(0.7,0.5,.2);       //first separation
-  glVertex3f(0.75,0.5,0.2);
-  glVertex3f(0.77,0.65,0.2);
-
-  glVertex3f(1.2,0.65,0.2);
-  glVertex3f(1.2,0.5,.2);       //second separation
-  glVertex3f(1.25,0.5,0.2);
-  glVertex3f(1.27,0.65,0.2);
-
-  glVertex3f(1.65,0.65,0.2);
-  glVertex3f(1.65,0.5,.2);     //3d separation
-  glVertex3f(1.7,0.5,0.2);
-  glVertex3f(1.7,0.65,0.2);
-
-  glVertex3f( 0.75, 0.65,0.2);
-  glVertex3f(0.75, 0.63,0.2);        //line strip
-  glVertex3f(1.7, 0.63, 0.2);
-  glVertex3f( 1.7,0.65,0.2);
-
-  glVertex3f( 0.75, 0.65,0.6);
-  glVertex3f(0.75, 0.63,0.6);        //line strip
-  glVertex3f(1.7, 0.63, 0.6);
-  glVertex3f( 1.7,0.65,0.6);
-
-  glColor3f(0.3,0.3,0.3);
-  glVertex3f( 0.77, 0.63,0.6);
-  glVertex3f(0.75, 0.5,0.6);        //quad front window
-  glVertex3f(1.2, 0.5, 0.6);
-  glVertex3f( 1.22,0.63,0.6);
-
-  glVertex3f(1.27,0.63,.6);
-  glVertex3f(1.25,0.5,0.6);        //quad back window
-  glVertex3f(1.65,0.5,0.6);
-  glVertex3f(1.67,0.63,0.6);
-
-  glColor3f(r,g,b);
-  glVertex3f(0.7,0.65,0.6);
-  glVertex3f(0.7,0.5,.6);       //first separation
-  glVertex3f(0.75,0.5,0.6);
-  glVertex3f(0.77,0.65,0.6);
-
-  glVertex3f(1.2,0.65,0.6);
-  glVertex3f(1.2,0.5,.6);       //second separation
-  glVertex3f(1.25,0.5,0.6);
-  glVertex3f(1.27,0.65,0.6);
-
-  glVertex3f(1.65,0.65,0.6);
-  glVertex3f(1.65,0.5,.6);
-  glVertex3f(1.7,0.5,0.6);
-  glVertex3f(1.7,0.65,0.6);
-  glEnd();
-
-
- //**************************************************************
-  glBegin(GL_QUADS);
-
-  /* top of cube*/
-  glColor3f(0.3,0.3,0.3);
-  glVertex3f( 0.6, 0.5,0.6);
-  glVertex3f(0.6, 0.5,0.2);        //quad front window
-  glVertex3f(0.7, 0.65, 0.2);
-  glVertex3f( 0.7,0.65,0.6);
-
-  glVertex3f(1.7,0.65,.6);
-  glVertex3f(1.7,0.65,0.2);        //quad back window
-  glVertex3f(1.8,0.5,0.2);
-  glVertex3f(1.8,0.5,0.6);
-
-
-//*****************************road and surrounding development***********************************
-  if(flag1)
-  {
-	glPushMatrix();
-	glTranslatef(xw,0,0);
-  glColor3f(0,1,0);
-  glVertex3f(-100,0.1,-100);
-  glVertex3f(-100,0.1,0);         //a green surroundings
-  glVertex3f(100,0.1,0);
-  glVertex3f(100,0.1,-100);
-
-  glColor3f(0.7,0.7,0.7);
-  glVertex3f(-100,0.1,0);
-  glVertex3f(-100,0.1,0.45);         //a long road
-  glVertex3f(100,0.1,0.45);
-  glVertex3f(100,0.1,0);
-
-  glColor3f(1.0,0.75,0.0);
-  glVertex3f(-100,0.1,0.45);       //a median
-  glVertex3f(-100,0.1,0.55);
-  glVertex3f(100,0.1,0.55);
-  glVertex3f(100,0.1,0.45);
-
-  glColor3f(0.7,0.7,0.7);
-  glVertex3f(-100,0.1,0.55);
-  glVertex3f(-100,0.1,1);         //a long road
-  glVertex3f(100,0.1,1);
-  glVertex3f(100,0.1,0.55);
-
-  glColor3f(0,1,0);
-  glVertex3f(-100,0.1,1);
-  glVertex3f(-100,0.1,100);         //a green surroundings
-  glVertex3f(100,0.1,100);
-  glVertex3f(100,0.1,1);
-    glPopMatrix();
-  }
-  glEnd();
-}
 
 
 void display(void)
 {
-	glClear(GL_COLOR_BUFFER_BIT);
-	glColor3f(1.0,1.0,1.0);
-	if(glob==1)
-		night();
-	if(glob==0)
-		day();
-	
-   redrawboat();
-   redrawboat1();
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	if(flag==0)
+	{
+		init1();
+		display1();
+		// flag=1;
+	}
+	else{
+		init();
+		glClear(GL_COLOR_BUFFER_BIT);
+		glColor3f(1.0,1.0,1.0);
+		if(glob==1)
+			night();
+		if(glob==0)
+			day();
 
-	glFlush();
-	glutSwapBuffers();
+		redrawboat();
+		redrawboat1();
+
+		glFlush();
+		glutSwapBuffers();
+	}
 
 }
 void day()
 {	//to set the sky color and ground color
-	car();
+	// car();
 	glColor3f(.8,.37,0.0);
 
 	glBegin(GL_POLYGON);
@@ -1271,35 +1093,96 @@ void mainmenu(int id)
 	switch(id)
 	{
 		case 1:exit(0);
-		break;
+				break;
 		case 2:glob=0;
-			break;
+				break;
 		case 3:glob=1;
-			break;
+				break;
 
 	}
 	glutPostRedisplay();
 }
 
+void colorMenu(int id)
+{
+	if (id==5)
+	{
+		r=g=0;
+		b=1;
+		glutPostRedisplay();
+	}
+	else if(id ==6)
+	{
+		r=0.8;
+		b=g=0;
+		glutPostRedisplay();
+	}
+	else if(id==7)
+	{
+	    g=1;
+		r=b=0;
+		glutPostRedisplay();
+	}
+	else if (id==8)
+	{
+		 r=b=g=0;
+		 glutPostRedisplay();
+	}
+	else if(id==9)
+	{
+		b=0;
+		r=g=1;
+        glutPostRedisplay();
+	}
+	
+
+}
+
+void myreshape(int w,int h)
+{
+        glViewport(0,0,w,h);
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+        if(w<=h)
+                glOrtho(-2.0,2.0,-2.0*(GLfloat)h/(GLfloat)w,2.0*(GLfloat)h/(GLfloat)w,-10.0,10.0);
+        else
+                glOrtho(-2.0*(GLfloat)w/(GLfloat)h,2.0*(GLfloat)w/(GLfloat)h,-2.0,2.0,-10.0,10.0);
+        glMatrixMode(GL_MODELVIEW);
+        glutPostRedisplay();
+}
+
+
+
+/* The function called when our window is resized  */
 int main(int argc,char** argv)
 {
 
 	glutInit(&argc,argv);
-	glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGB);
+	glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGB|GLUT_DEPTH);
+
 	glutInitWindowSize(2200,1800);
 	glutInitWindowPosition(0,0);
-	glutCreateWindow("sea view");
+	glutCreateWindow("Scenario Based");
 
-	glutKeyboardFunc(key);
+	glutReshapeFunc(myreshape); 
 	glutDisplayFunc(display);
 
-	glutCreateMenu(mainmenu);
+	glutKeyboardFunc(key);
+	init();
+
+	submenu = glutCreateMenu(colorMenu);
+	glutAddMenuEntry("blue", 4);
+	glutAddMenuEntry("red", 5);
+	glutAddMenuEntry("green",6);
+	glutAddMenuEntry("black",7);
+	glutAddMenuEntry("yellow",8);
+	glutAddMenuEntry("grey",9);
+	window = glutCreateMenu(mainmenu);
 	glutAddMenuEntry("QUIT",1);
 	glutAddMenuEntry("DAY VIEW",2);
 	glutAddMenuEntry("NIGHT VIEW",3);
-
+	glutAddSubMenu("COLOR MODES",submenu);
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
-	init();
 	glutMainLoop();
 	return 0;
 }
