@@ -166,7 +166,7 @@ else
 	  glClearColor(0.1,0.1,0.1,0);
   glPushMatrix();
   glLoadIdentity();
-  glTranslatef(-1.0,0.0,-3.5);
+  glTranslatef(-1.0,0.0,-8.5);
   glRotatef(xangle,1.0,0.0,0.0);
   glRotatef(yangle,0.0,1.0,0.0);
   glRotatef(zangle,0.0,0.0,1.0);
