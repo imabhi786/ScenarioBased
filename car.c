@@ -53,7 +53,6 @@ GLvoid Transform(GLfloat Width, GLfloat Height)
 /* A general OpenGL initialization function.  Sets all of the initial parameters. */
 GLvoid InitGL(GLfloat Width, GLfloat Height)
 {
-
   glClearColor(1.0, 1.0, 1.0, 1.0);
   glLineWidth(2.0);              /* Add line width,   ditto */
   Transform( Width, Height ); /* Perform the transformation */

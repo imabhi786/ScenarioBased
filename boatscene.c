@@ -23,6 +23,9 @@ static int window, returnmenu, returnsubmenu, returnsubmenucolor1, returnsubmenu
 char name3[]="Computer Graphics project : Scenario based Nature";
 
 GLint a=300,b1=-300,traffic_regulator=1,control_keyl,control_keyr;
+GLUquadricObj *t;
+GLdouble radius = 10;
+GLdouble a1=1400, a2=1600,b9=10,b2=100;
 
 void day();
 void night();
@@ -39,13 +42,14 @@ void circle_draw(GLint h,GLint k,GLint r);
 void plotpixels(GLint h,GLint k,GLint x,GLint y);
 void display();
 void displaytext();
-void car();
+void car(GLdouble ,GLdouble);
 void bus();
 
 void key(unsigned char key,int x,int y);
 void mainmenu(int id);
 
 void init();
+void init1();
 int main(int argc,char** argv);
 
 
@@ -822,6 +826,11 @@ void drawtree()
 	glVertex2f(550,470);
 	glVertex2f(550,220);
 	glEnd();
+
+
+
+	t=gluNewQuadric();
+	gluSphere(t,radius,4,4);
 }
 
 //To draw tree for NIGHT
@@ -950,7 +959,9 @@ void display(void)
 		// drawcar();
 		redrawboat();
 		redrawboat1();
-		car();
+		car(a1,b9);
+		car(a2,b2);
+		car(a2+200,b2+110);
 		glFlush();
 
 		glutSwapBuffers();
@@ -1116,33 +1127,38 @@ void mainmenu(int id)
 
 void colorMenu(int id)
 {
-	if (id==5)
+	if (id==4)
 	{
 		r=g=0;
 		b=1;
 		glutPostRedisplay();
 	}
-	else if(id ==6)
+	else if(id ==5)
 	{
 		r=0.8;
 		b=g=0;
 		glutPostRedisplay();
 	}
-	else if(id==7)
+	else if(id==6)
 	{
 	    g=1;
 		r=b=0;
 		glutPostRedisplay();
 	}
-	else if (id==8)
+	else if (id==7)
 	{
 		 r=b=g=0;
 		 glutPostRedisplay();
 	}
-	else if(id==9)
+	else if(id==8)
 	{
 		b=0;
 		r=g=1;
+        glutPostRedisplay();
+	}
+	else{
+		b=0.9;
+		r=g=0.9;
         glutPostRedisplay();
 	}
 	
@@ -1314,10 +1330,10 @@ glEnd();
 glPopMatrix();
 }
 
-void car()
+void car(GLdouble  x,GLdouble y)
 {
 glPushMatrix(); //making color for outer line
-glTranslated(1200,190.0,0.0);
+glTranslated(x,y,0.0);
 glScaled(20.0,20.0,0.0);
 glColor3f(1.0,0.0,0.0);
 glBegin(GL_POLYGON);
